@@ -22,10 +22,5 @@ npm run build
 npm run serve
 ```
 
-### Switch versions (ex. v1.0.0)
-```sh
-git checkout v1.0.0
-```
-
 ### Article
 About details of this boilerplate, please refer to: [React: Server-side Rendering and Hot Reloading](https://medium.com/@justinjung04/react-server-side-rendering-and-hot-reloading-ffb87ca81a89)
