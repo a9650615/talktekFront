@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import Router from './Router'
 import reducers from './reducers'
+import asyncBootstrapper from 'react-async-bootstrapper'
 
 export default (req, res) => {
 	if(process.env.NODE_ENV === 'development') {
@@ -22,31 +23,35 @@ export default (req, res) => {
 			</html>
 		`);
 	} else if(process.env.NODE_ENV === 'production') {
-		const reactString = renderToString(
+		const app = (
 			<Provider store={createStore(reducers)}>
 				<StaticRouter location={req.url} context={{}}>
 					<Router />
 				</StaticRouter>
 			</Provider>
 		)
-		const helmet = Helmet.renderStatic()
-		const html = `
-			<!doctype html>
-			<html ${helmet.htmlAttributes.toString()}>
-				<head>
-				 	<meta charSet="utf-8">
-        	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-					${helmet.title.toString()}
-					${helmet.meta.toString()}
-					${helmet.link.toString()}
-				</head>
-				<body>
-					<div id='app'>${reactString}</div>
-					<script src='bundle.js'></script>
-				</body>
-			</html>
-		`
 
-		res.send(html)
+		asyncBootstrapper(app).then(() => {
+			const reactString = renderToString(app)
+			const helmet = Helmet.renderStatic()
+			const html = `
+				<!doctype html>
+				<html ${helmet.htmlAttributes.toString()}>
+					<head>
+						 <meta charSet="utf-8">
+						<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+						${helmet.title.toString()}
+						${helmet.meta.toString()}
+						${helmet.link.toString()}
+					</head>
+					<body>
+						<div id='app'>${reactString}</div>
+						<script src='bundle.js'></script>
+					</body>
+				</html>
+			`
+	
+			res.send(html)
+		})
 	}
 };

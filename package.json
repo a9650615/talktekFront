@@ -11,18 +11,14 @@
   },
   "author": "Birdyo",
   "license": "MIT",
-  "devDependencies": {
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/justinjung04/universal-boilerplate.git"
-  },
+  "devDependencies": {},
   "dependencies": {
     "autoprefixer": "^7.1.2",
     "babel-cli": "^6.10.1",
     "babel-core": "^6.10.4",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.1",
+    "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-react-hmre": "^1.1.1",
@@ -35,10 +31,14 @@
     "eslint-plugin-react": "^7.1.0",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^3.0.0",
+    "firebase": "^4.3.0",
+    "material-ui": "^1.0.0-beta.6",
     "node-sass": "^4.5.3",
     "postcss-loader": "^2.0.6",
     "react": "^15.2.1",
+    "react-async-bootstrapper": "^1.1.1",
     "react-dom": "^15.2.1",
+    "react-helmet": "^5.2.0",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.2",
     "react-router-redux": "^5.0.0-alpha.6",
@@ -48,7 +48,6 @@
     "style-loader": "^0.18.2",
     "webpack": "^3.4.1",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.12.2",
-    "react-helmet": "^5.2.0"
+    "webpack-hot-middleware": "^2.12.2"
   }
 }
