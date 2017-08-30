@@ -1,7 +1,7 @@
 {
-  "name": "universal-boilerplate",
+  "name": "talktek-front",
   "version": "2.0.0",
-  "description": "Isomorphic/universal boilerplate with react, redux, webpack and express",
+  "description": "Isomorphic/universal website with react, redux, webpack and express",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint ./src",
@@ -9,9 +9,15 @@
     "build": "rimraf dist && webpack --config ./webpack.config.prod.js",
     "serve": "cross-env NODE_ENV=production babel-node ./server.js"
   },
-  "author": "Justin Jung <justinjung04@gmail.com>",
+  "author": "Birdyo",
   "license": "MIT",
   "devDependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/justinjung04/universal-boilerplate.git"
+  },
+  "dependencies": {
     "autoprefixer": "^7.1.2",
     "babel-cli": "^6.10.1",
     "babel-core": "^6.10.4",
@@ -42,13 +48,7 @@
     "style-loader": "^0.18.2",
     "webpack": "^3.4.1",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.12.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/justinjung04/universal-boilerplate.git"
-  },
-  "dependencies": {
+    "webpack-hot-middleware": "^2.12.2",
     "react-helmet": "^5.2.0"
   }
 }
