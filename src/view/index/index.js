@@ -5,8 +5,7 @@ import Firebase from '../../lib/FirebaseDB'
 import CapsuleAction from '../../reducers/capsule/capsuleAction'
 import jwtDecode from 'jwt-decode'
 import AudioPlayer from '../../components/audioPlayer'
-
-let data = {}
+import Grid from 'material-ui/Grid'
 
 class Index extends Component {
  
@@ -45,13 +44,13 @@ class Index extends Component {
   }
 
   render() {
+    console.log(this.props.url)
     return (
-      <div>
+      <Grid item xs={12} sm={10}>
+        <AudioPlayer src={this.props.url} />
         {this.props.audioName}
         <div dangerouslySetInnerHTML={{__html: this.props.draft}} />
-        <audio src={this.props.url} controls/>
-        <AudioPlayer />
-      </div>
+      </Grid>
     )
   }
 }
