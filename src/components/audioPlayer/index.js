@@ -3,11 +3,10 @@ import Slider from 'rc-slider'
 import IconButton from 'material-ui/IconButton'
 import PlayArrow from 'material-ui-icons/PlayArrow'
 import Pause from 'material-ui-icons/Pause'
-import './style.scss'
 
 class audioPlayer extends Component {
-  audio = document.createElement('audio')
-  timer = setInterval(this._updateInfo.bind(this), 700)
+  audio = null
+  timer = null
 
   state = {
     duration: null,
@@ -35,6 +34,9 @@ class audioPlayer extends Component {
   }
 
   componentDidMount() {
+    require('./playerStyle.scss')
+    this.audio = document.createElement('audio')
+    this.timer = setInterval(this._updateInfo.bind(this), 700)
     this._changeAudio(this.props.src)
   }
 
@@ -113,6 +115,9 @@ class audioPlayer extends Component {
         <div className="timer">
           {this.formatTime(this.state.seekTime)}/{this.formatTime(this.state.duration)}
         </div>
+        <noscript>
+          <audio src={this.props.src} controls />
+        </noscript>
       </div>
     )
   }

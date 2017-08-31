@@ -35,7 +35,7 @@ class Index extends Component {
   }
 
   async asyncBootstrap() {
-    data = await this.getData()
+    const data = await this.getData()
     this.setState({
       data
     })
@@ -44,7 +44,6 @@ class Index extends Component {
   }
 
   render() {
-    console.log(this.props.url)
     return (
       <Grid item xs={12} sm={10}>
         <AudioPlayer src={this.props.url} />
