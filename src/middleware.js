@@ -18,13 +18,15 @@ export default (req, res) => {
 				</head>
 				<body>
 					<div id='app'></div>
-					<script src='bundle.js'></script>
+					<script id="preload"></script>
+					<script src='/bundle.js'></script>
 				</body>
 			</html>
 		`);
 	} else if(process.env.NODE_ENV === 'production') {
+		const store = createStore(reducers)
 		const app = (
-			<Provider store={createStore(reducers)}>
+			<Provider store={store}>
 				<StaticRouter location={req.url} context={{}}>
 					<Router />
 				</StaticRouter>
@@ -32,21 +34,27 @@ export default (req, res) => {
 		)
 
 		asyncBootstrapper(app).then(() => {
+			const preState = store.getState()
+			// console.log('preSTATE:::', preState)
 			const reactString = renderToString(app)
 			const helmet = Helmet.renderStatic()
 			const html = `
 				<!doctype html>
 				<html ${helmet.htmlAttributes.toString()}>
 					<head>
-						 <meta charSet="utf-8">
+						<meta charSet="utf-8">
 						<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+						<link rel='stylesheet' href='/bundle.css' />
 						${helmet.title.toString()}
 						${helmet.meta.toString()}
 						${helmet.link.toString()}
+						<script id="preload">
+						window.__PRELOADED__STATE=${JSON.stringify(preState).replace(/</g, '\\u003c')}
+						</script>
 					</head>
 					<body>
 						<div id='app'>${reactString}</div>
-						<script src='bundle.js'></script>
+						<script src='/bundle.js'></script>
 					</body>
 				</html>
 			`

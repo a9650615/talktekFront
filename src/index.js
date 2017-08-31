@@ -6,9 +6,19 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import Router from './Router'
 import reducers from './reducers'
+import './App.scss'
 
+const preloadedState = window.__PRELOADED__STATE
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const history = createBrowserHistory()
-const store = createStore(reducers, applyMiddleware(routerMiddleware(history)))
+const store = createStore(reducers, preloadedState,
+  composeEnhancers( 
+    applyMiddleware(routerMiddleware(history))
+  )
+)
+
+document.getElementById('preload').remove()
+delete window.__PRELOADED__STATE
 
 render(
   <Provider store={store}>

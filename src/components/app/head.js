@@ -7,7 +7,6 @@ export default class Head extends Component {
     return (
       <Helmet>
         <title>{this.props.title}</title>
-        <link rel='stylesheet' href='bundle.css' />
       </Helmet>
     )
   }

@@ -5,7 +5,7 @@ import Index from './view/index'
 
 export default () => (
   <Switch>
-    <Route exact path='/' component={Index} />
+    <Route exact path='/capsule/:token' component={Index} />
     <Route component={NoMatch} />
   </Switch>
 );
