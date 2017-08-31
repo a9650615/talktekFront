@@ -15,6 +15,7 @@ export default (req, res) => {
 			<html>
 				<head>
 					<title>this Is Not server rendering</title>
+					<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 				</head>
 				<body>
 					<div id='app'></div>

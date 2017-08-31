@@ -7,6 +7,7 @@ import jwtDecode from 'jwt-decode'
 import AudioPlayer from '../../components/audioPlayer'
 import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid'
+import OpenAppBanner from '../../components/openAppBanner'
 
 class Index extends Component {
  
@@ -49,7 +50,8 @@ class Index extends Component {
       <Grid item xs={12} sm={10}>
         <AudioPlayer src={this.props.url} />
         <Typography type="display2">{this.props.audioName}</Typography>
-        <div dangerouslySetInnerHTML={{__html: this.props.draft}} />
+        <div className="post" dangerouslySetInnerHTML={{__html: this.props.draft}} />
+        <OpenAppBanner />
       </Grid>
     )
   }

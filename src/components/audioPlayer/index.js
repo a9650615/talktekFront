@@ -34,10 +34,12 @@ class audioPlayer extends Component {
   }
 
   componentDidMount() {
-    require('./playerStyle.scss')
-    this.audio = document.createElement('audio')
-    this.timer = setInterval(this._updateInfo.bind(this), 700)
-    this._changeAudio(this.props.src)
+    if (window) {
+      require('./playerStyle.scss')
+      this.audio = document.createElement('audio')
+      this.timer = setInterval(this._updateInfo.bind(this), 700)
+      this._changeAudio(this.props.src)
+    }
   }
 
   componentWillUnmount() {
