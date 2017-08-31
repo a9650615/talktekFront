@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default ({ title }) => (
-  <h1>{title}</h1>
+export default ({}) => (
+  <div style={{textAlign: 'center'}}>
+    <img src="/assets/logo.png" className="headerImg" />
+  </div>
 );
