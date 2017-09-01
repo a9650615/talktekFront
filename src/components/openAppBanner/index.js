@@ -8,6 +8,10 @@ class OpemAppBanner extends Component {
     require('./style.scss')
   }
 
+  _openLink() {
+    location.href='com.talkTekApp://'
+  }
+
   render() {
     return (
       <div className="openAppBanner">
@@ -18,7 +22,7 @@ class OpemAppBanner extends Component {
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3}>
-            <Button raised className="open-btn" color="accent" style={{color: 'white'}}>立即開啟</Button>
+            <Button raised className="open-btn" color="accent" style={{color: 'white'}} onClick={this._openLink}>立即開啟</Button>
           </Grid>
         </Grid>
       </div>

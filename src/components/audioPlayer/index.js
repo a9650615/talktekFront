@@ -100,8 +100,8 @@ class audioPlayer extends Component {
         >
           {
             this.state.play?
-            <Pause /> :
-            <PlayArrow />
+            <Pause style={{width: 40, height: 40}}/> :
+            <PlayArrow style={{width: 40, height: 40}}/>
           }
         </IconButton>
         <Slider 
