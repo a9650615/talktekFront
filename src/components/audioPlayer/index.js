@@ -117,9 +117,9 @@ class audioPlayer extends Component {
         <div className="timer">
           {this.formatTime(this.state.seekTime)}/{this.formatTime(this.state.duration)}
         </div>
-        <noscript>
+        {/* <noscript>
           <audio src={this.props.src} controls />
-        </noscript>
+        </noscript> */}
       </div>
     )
   }

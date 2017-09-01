@@ -15,6 +15,7 @@ export default (req, res) => {
 			<html>
 				<head>
 					<title>this Is Not server rendering</title>
+					<link rel="icon" href="/assets/favicon.ico" />
 					<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 				</head>
 				<body>
@@ -46,6 +47,7 @@ export default (req, res) => {
 						<meta charSet="utf-8">
 						<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 						<link rel='stylesheet' href='/bundle.css' />
+						<link rel="icon" href="/assets/favicon.ico" />
 						${helmet.title.toString()}
 						${helmet.meta.toString()}
 						${helmet.link.toString()}

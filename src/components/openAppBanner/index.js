@@ -18,7 +18,7 @@ class OpemAppBanner extends Component {
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3}>
-            <Button raised className="open-btn" color="accent">立即開啟</Button>
+            <Button raised className="open-btn" color="accent" style={{color: 'white'}}>立即開啟</Button>
           </Grid>
         </Grid>
       </div>

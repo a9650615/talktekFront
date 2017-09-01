@@ -4,6 +4,8 @@ import { createBrowserHistory } from 'history'
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
+import styleTheme from './config/materialUi'
 import Router from './Router'
 import reducers from './reducers'
 import './App.scss'
@@ -22,10 +24,14 @@ if (process.env.NODE_ENV === 'product') {
   delete window.__PRELOADED__STATE
 }
 
+const theme = createMuiTheme(styleTheme)
+
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Router />
+      <MuiThemeProvider theme={theme}>
+        <Router />
+      </MuiThemeProvider>
     </ConnectedRouter>
   </Provider>
 , document.getElementById('app'));

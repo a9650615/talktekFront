@@ -8,6 +8,7 @@ import AudioPlayer from '../../components/audioPlayer'
 import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid'
 import OpenAppBanner from '../../components/openAppBanner'
+import Head from '../../components/app/head'
 
 class Index extends Component {
  
@@ -48,8 +49,9 @@ class Index extends Component {
   render() {
     return (
       <Grid item xs={12} sm={10}>
+        <Head title={`${this.props.audioName} - talk 小講`} />
         <AudioPlayer src={this.props.url} />
-        <Typography type="display2">{this.props.audioName}</Typography>
+        <Typography type="display1">{this.props.audioName}</Typography>
         <div className="post" dangerouslySetInnerHTML={{__html: this.props.draft}} />
         <OpenAppBanner />
       </Grid>
