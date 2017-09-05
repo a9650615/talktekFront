@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ButtonBase from 'material-ui/Button'
 import Slider from 'rc-slider'
 import IconButton from 'material-ui/IconButton'
 import PlayArrow from 'material-ui-icons/PlayArrow'
@@ -7,12 +8,19 @@ import Pause from 'material-ui-icons/Pause'
 class audioPlayer extends Component {
   audio = null
   timer = null
+  playRateList = [0.5, 0.75, 1, 1.5, 2]
 
   state = {
     duration: null,
     play: false,
     drag: false,
-    seekTime: 0
+    seekTime: 0,
+    rateType: 2
+  }
+
+  speedButtonTheme = {
+    background: 'rgba(0,0,0,0)',
+    margin: '0 10px'
   }
 
   _updateInfo() {
@@ -27,6 +35,7 @@ class audioPlayer extends Component {
       })
     }
   }
+  
   componentWillReceiveProps(nextProps) {
     if (nextProps.src) {
       this._changeAudio(nextProps.src)
@@ -45,6 +54,17 @@ class audioPlayer extends Component {
   componentWillUnmount() {
     this.audio.remove()
     clearInterval(this.timer)
+  }
+
+  _changeRate = () => {
+    let type = this.state.rateType + 1
+    if (type > this.playRateList.length - 1)
+      type = 0
+
+    this.audio.playbackRate = this.playRateList[type]
+    this.setState({
+      rateType: type
+    })
   }
 
   _changeAudio(url) {
@@ -89,6 +109,11 @@ class audioPlayer extends Component {
     return minutes + ":" + seconds;
   }
 
+  _renderPlayButton = () => 
+    this.state.play?
+    <Pause style={{width: 40, height: 40}}/> :
+    <PlayArrow style={{width: 40, height: 40}}/>
+
   render() {
     const {seekTime} = this.state
     return (
@@ -98,11 +123,7 @@ class audioPlayer extends Component {
           className="controlButton"
           onClick={this._togglePlay}
         >
-          {
-            this.state.play?
-            <Pause style={{width: 40, height: 40}}/> :
-            <PlayArrow style={{width: 40, height: 40}}/>
-          }
+          {this._renderPlayButton()}
         </IconButton>
         <Slider 
           className="slideBar" 
@@ -114,6 +135,12 @@ class audioPlayer extends Component {
           onChange={this._changeBar}
           onAfterChange={this._seekAudio}
           />
+        <ButtonBase 
+          onClick={this._changeRate}
+          style={this.speedButtonTheme}
+        >
+          x {this.playRateList[this.state.rateType]}
+        </ButtonBase>
         <div className="timer">
           {this.formatTime(this.state.seekTime)}/{this.formatTime(this.state.duration)}
         </div>
